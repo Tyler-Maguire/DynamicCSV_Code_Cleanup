@@ -1,0 +1,54 @@
+<mvc:View controllerName="com.epiuse.dynamcsv.controller.dynamCsv"
+    xmlns:mvc="sap.ui.core.mvc"  displayBlock="true"
+    xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
+    <Page id="page"  title="{i18n>title}" >
+
+
+	<VBox id="FileUploadBaseZone" alignItems="Center" class="pad">	
+		 <Label labelFor="FileUploadBase" class="custLabel" id="file1" text="Please upload file 1 for comparison."/>
+		 <HBox id = "FileUploadBase" >
+     	<u:FileUploader id="FileUploaderBase" typeMissmatch="handleTypeMissmatch" change="handleValueChange"
+		 maximumFileSize="10" fileSizeExceed="handleFileSize" maximumFilenameLength="50" filenameLengthExceed="handleFileNameLength"
+		  multiple="false" sameFilenameAllowed="false" buttonText="Browse" fileType="CSV" style="Emphasized" placeholder="Choose a CSV file"/>
+     	<Button id = "butt1" text="Upload" press="onUploadBase" />
+	</HBox>
+		<Text id="FileOutBase" class="FileOut" text="{/CSVBaseJson}" wrapping="true" width="700px"/>
+		<Input id="KeySelection" class="custLabel" textFormatMode="Key" placeholder="Enter CSV Keys for Comparison." width="310px"/>
+	</VBox>	
+	<VBox id="spacer" height="20px">
+		
+	</VBox>	
+	<VBox id="FileUploadCompareZone" alignItems="Center">
+		<Label id="file2" class="custLabel" text="Please upload file 2 for comparison."/>
+		<HBox id = "FileUploadCompare">
+     	<u:FileUploader id="FileUploaderCompare" typeMissmatch="handleTypeMissmatch" change="handleValueChange"
+		 maximumFileSize="10" fileSizeExceed="handleFileSize" maximumFilenameLength="50" filenameLengthExceed="handleFileNameLength"
+		  multiple="false" sameFilenameAllowed="false" buttonText="Browse" fileType="CSV" style="Emphasized" placeholder="Choose a CSV file"/>
+     	<Button id = "butt2" text="Upload" press="onUploadCompare" />
+	</HBox>	
+	<Text id="FileOutCompare" class="FileOut" text="{/CSVCompareJson}" wrapping="true" width="700px"/>
+	<Input id="RowSelection" class="custLabel,FileOut" textFormatMode="Value" placeholder="Enter CSV Keys for Comparison." width="310px"/>
+	</VBox>
+
+	<VBox id="verticleLayKey" alignItems="Center">
+	
+	<Button id = "butt3" text="Compare uploaded CSV files." press="onCompare" />
+	<Text id="Fileout" text="{/CSVGenDiff}" width="700px" wrapping="true"/>
+
+	 <HBox id = "Controls">
+	<Button id = "butt4" text="Clipboard Copy" press="copyToClipBoard" />
+	<Button id = "butt5" text="Export to CSV" press="exportResultstoFile" />
+	</HBox>
+
+	<html:div id="result" class="container-center container-action" style="" width="800px">
+	<html:div id="result-diff" class="span result-diff" wrapping="true" width="800px">
+	</html:div></html:div>
+	
+	<html:div id="tablePrint"> </html:div>
+	</VBox>
+	
+
+
+	<content/>
+    </Page>
+</mvc:View>
